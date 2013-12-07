@@ -1,64 +1,53 @@
 <!DOCTYPE html>
-<!-- originally from blog.frankel.ch/wp-content/resources/you-should-check-angularjs/threejs-demo.html -->
 <html ng-app>
 <head>
-    <title>AngularJS uses three.js</title>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/foundation.min.css"/>
+    <title>blockworld</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
 </head>
 <body ng-controller="ThreeJsCtrl">
-<div class="row">
-    <div class="small-12 columns">
-        <h1><span class="label">AngularJS</span> uses <span class="label">three.js</span></h1>
 
-        <h1 class="subheader">with a touch of <span class="label secondary">Foundation</span></h1>
+<div class="containter">
 
-        <div class="panel">
-            <ul class="inline-list">
-                <li><a href="http://angularjs.org/" target="_blank">AngularJS</a></li>
-                <li><a href="http://threejs.org/" target="_blank">three.js</a></li>
-                <li><a href="http://foundation.zurb.com" target="_blank">Foundation</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="small-6 columns">
-        <div class="row">
-            <div class="small-12 columns">
-                <ng-include src="'axis.html'" ng-controller="AxisXCtrl"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 columns">
-                <ng-include src="'axis.html'" ng-controller="AxisYCtrl"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 columns">
-                <ng-include src="'axis.html'" ng-controller="AxisZCtrl"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 columns">
-                <ul class="button-group">
-                    <li><a class="button large alert" ng-controller="ColorRedCtrl" ng-mouseover="updateColor()">Red</a>
-                    </li>
-                    <li><a class="button large success" ng-controller="ColorGreenCtrl" ng-mouseover="updateColor()">Green</a>
-                    </li>
-                    <li><a class="button large" ng-controller="ColorBlueCtrl" ng-mouseover="updateColor()">Blue</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="small-6 columns">
-        <div id="container" style="height: 100px; width: 100%;">
-        </div>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <div class="page-header">
+        <h1>blockworld</h1>
+        <p class="lead">experiments with angular.js and three.js</p>
+    </div> <!-- /page-header-->
+
+    <div class="row">
+        <div class="col-md-4">
+            <ng-include src="'./axis.html'" ng-controller="AxisXCtrl"/>
+        </div> <!-- /class-md-4 -->
+        <div class="col-md-4">
+            <ng-include src="'./axis.html'" ng-controller="AxisYCtrl"/>
+        </div> <!-- /class-md-4 -->
+        <div class="col-md-4">
+            <ng-include src="'./axis.html'" ng-controller="AxisZCtrl"/>
+        </div> <!-- /class-md-4 -->
+    </div> <!-- /row -->
+
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn-lg btn-danger" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">red</a>
+        </div> <!-- /class-md-4 -->
+        <div class="col-md-4">
+            <a class="btn-lg btn-success" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">green</a>
+        </div> <!-- /class-md-4 -->
+        <div class="col-md-4">
+            <a class="btn-lg btn-primary" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">blue</a>
+        </div> <!-- /class-md-4 -->
+    </div> <!-- /row -->
+
+    <div class="row">
+        <div id="container" style="height:100px; width: 100%; color:#aaaaaa;"></div>
+    </div> <!-- /row -->
+
+</div> <!-- /container -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r53/three.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="scene.js"></script>
 <script src="controller.js"></script>
 <script type="application/javascript">
