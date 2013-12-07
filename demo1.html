@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- originally from blog.frankel.ch/wp-content/resources/you-should-check-angularjs/threejs-demo.html -->
+<html ng-app>
+<head>
+    <title>AngularJS uses three.js</title>
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/foundation.min.css"/>
+</head>
+<body ng-controller="ThreeJsCtrl">
+<div class="row">
+    <div class="small-12 columns">
+        <h1><span class="label">AngularJS</span> uses <span class="label">three.js</span></h1>
+
+        <h1 class="subheader">with a touch of <span class="label secondary">Foundation</span></h1>
+
+        <div class="panel">
+            <ul class="inline-list">
+                <li><a href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+                <li><a href="http://threejs.org/" target="_blank">three.js</a></li>
+                <li><a href="http://foundation.zurb.com" target="_blank">Foundation</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-6 columns">
+        <div class="row">
+            <div class="small-12 columns">
+                <ng-include src="'axis.html'" ng-controller="AxisXCtrl"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <ng-include src="'axis.html'" ng-controller="AxisYCtrl"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <ng-include src="'axis.html'" ng-controller="AxisZCtrl"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <ul class="button-group">
+                    <li><a class="button large alert" ng-controller="ColorRedCtrl" ng-mouseover="updateColor()">Red</a>
+                    </li>
+                    <li><a class="button large success" ng-controller="ColorGreenCtrl" ng-mouseover="updateColor()">Green</a>
+                    </li>
+                    <li><a class="button large" ng-controller="ColorBlueCtrl" ng-mouseover="updateColor()">Blue</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="small-6 columns">
+        <div id="container" style="height: 100px; width: 100%;">
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r53/three.min.js"></script>
+<script src="scene.js"></script>
+<script src="controller.js"></script>
+<script type="application/javascript">
+    scene.init();
+</script>
+</body>
+</html>
