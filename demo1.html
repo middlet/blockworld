@@ -9,10 +9,12 @@
 
 <div class="containter">
 
-    <div class="page-header">
-        <h1>blockworld</h1>
-        <p class="lead">experiments with angular.js and three.js</p>
-    </div> <!-- /page-header-->
+    <div class="row">
+        <div class="page-header">
+            <h1>blockworld</h1>
+            <p class="lead">experiments with angular.js and three.js</p>
+        </div> <!-- /page-header-->
+    </div> <!-- /row -->
 
     <div class="row">
         <div class="col-md-4">
@@ -28,13 +30,13 @@
 
     <div class="row">
         <div class="col-md-4">
-            <a class="btn-lg btn-danger" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">red</a>
+            <button class="btn-lg btn-danger" ng-controler="ColorRedCtrl" ng-mousedown="updateColor()">red</button>
         </div> <!-- /class-md-4 -->
         <div class="col-md-4">
-            <a class="btn-lg btn-success" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">green</a>
+            <button class="btn-lg btn-success" ng-controler="ColorGreenCtrl" ng-click="updateColor()">green</button>
         </div> <!-- /class-md-4 -->
         <div class="col-md-4">
-            <a class="btn-lg btn-primary" ng-controler="ColorRedCtrl" ng-mouseover="updateColor()">blue</a>
+            <button class="btn-lg btn-primary" ng-controler="ColorBlueCtrl" ng-mousedown="updateColor()">blue</button>
         </div> <!-- /class-md-4 -->
     </div> <!-- /row -->
 

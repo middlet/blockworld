@@ -181,7 +181,6 @@ var scene = (function () {
         },
 
         setCubeGreenColorAndPaint: function() {
-
             setCubeColor('green');
             paint();
         },
