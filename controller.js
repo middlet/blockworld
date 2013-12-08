@@ -2,7 +2,7 @@
 
 function ThreeJsCtrl($scope) {
 
-    var position = scene.getCubeRotation();
+    var position = scene.getPlaneRotation();
 
     $scope.x = position[0];
     $scope.y = position[1];
@@ -18,7 +18,7 @@ function AxisXCtrl($scope) {
 
         this.x = this.axis;
 
-        scene.setCubeXRotationAndPaint(this.x);
+        scene.setPlaneXRotationAndPaint(this.x);
     }
 }
 
@@ -31,7 +31,7 @@ function AxisYCtrl($scope) {
 
         this.y = this.axis;
 
-        scene.setCubeYRotationAndPaint(this.y);
+        scene.setPlaneYRotationAndPaint(this.y);
     }
 }
 
@@ -44,32 +44,6 @@ function AxisZCtrl($scope) {
 
         this.z = this.axis;
 
-        scene.setCubeZRotationAndPaint(this.z);
-    }
-}
-
-function ColorRedCtrl($scope) {
-
-    $scope.updateColor = function () {
-
-        scene.setCubeRedColorAndPaint();
-    }
-}
-
-
-function ColorGreenCtrl($scope) {
-
-    $scope.updateColor = function () {
-
-        scene.setCubeGreenColorAndPaint();
-    }
-}
-
-
-function ColorBlueCtrl($scope) {
-
-    $scope.updateColor = function () {
-
-        scene.setCubeBlueColorAndPaint();
+        scene.setPlaneZRotationAndPaint(this.z);
     }
 }

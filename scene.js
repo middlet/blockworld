@@ -3,41 +3,31 @@
 var scene = (function () {
 
 // set the scene size
-    var WIDTH = 400;
-    var HEIGHT = 300;
+    var WIDTH = $('#container').width();
+    var HEIGHT = $('#container').height();
 
     var ASPECT = WIDTH / HEIGHT;
 
 // create a WebGL renderer
 // and a scene
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.CanvasRenderer();
     var scene = new THREE.Scene();
 
-    var cube;
+    var plane;
 
     function createGeometry() {
 
-// set up the cube vars
-        var length = 50;
-        var segments = 16;
 
-// create the cube's material
-        var sphereMaterial = new THREE.MeshLambertMaterial(
-            {
-                color: 0xCC0000
-            });
+        plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(100,100,10,10), 
+            new THREE.MeshNormalMaterial());
 
-// create a new mesh with cube geometry -
-        cube = new THREE.Mesh(
-            new THREE.CubeGeometry(length, length, length, segments, segments, segments),
-            sphereMaterial);
+        plane.material.side = THREE.DoubleSide;
 
-        cube.rotation.x += 0.2;
-        cube.rotation.y += 0.3;
-        cube.rotation.z += 0.1;
+        plane.rotation.x -= 1.0;
 
-// add the cube to the scene
-        scene.add(cube);
+// add the plane to the scene
+        scene.add(plane);
     }
 
     function createCamera() {
@@ -93,39 +83,23 @@ var scene = (function () {
         $container.append(renderer.domElement);
     }
 
-    function getCubeRotation() {
+    function getPlaneRotation() {
 
-        return [cube.rotation.x, cube.rotation.y, cube.rotation.z];
+        return [plane.rotation.x, plane.rotation.y, plane.rotation.z];
     }
 
-    function setCubeRotation(axis, val) {
+    function setPlaneRotation(axis, val) {
 
         switch (axis) {
 
             case 'x':
-                cube.rotation.x = val;
+                plane.rotation.x = val;
                 break;
             case 'y':
-                cube.rotation.y = val;
+                plane.rotation.y = val;
                 break;
             case 'z':
-                cube.rotation.z = val;
-                break;
-        }
-    }
-
-    function setCubeColor(color) {
-
-        switch (color) {
-
-            case 'red':
-                cube.material.color.setHex(0xCC0000);
-                break;
-            case 'green':
-                cube.material.color.setHex(0x00CC00);
-                break;
-            case 'blue':
-                cube.material.color.setHex(0x0000CC);
+                plane.rotation.z = val;
                 break;
         }
     }
@@ -151,44 +125,28 @@ var scene = (function () {
             paint();
         },
 
-        getCubeRotation: function () {
+        getPlaneRotation: function () {
 
-            return getCubeRotation();
+            return getPlaneRotation();
         },
 
-        setCubeXRotationAndPaint: function (x) {
+        setPlaneXRotationAndPaint: function (x) {
 
-            setCubeRotation('x', x);
+            setPlaneRotation('x', x);
             paint();
         },
 
-        setCubeYRotationAndPaint: function (y) {
+        setPlaneYRotationAndPaint: function (y) {
 
-            setCubeRotation('y', y);
+            setPlaneRotation('y', y);
             paint();
         },
 
-        setCubeZRotationAndPaint: function (z) {
+        setPlaneZRotationAndPaint: function (z) {
 
-            setCubeRotation('z', z);
-            paint();
-        },
-
-        setCubeRedColorAndPaint: function() {
-
-            setCubeColor('red');
-            paint();
-        },
-
-        setCubeGreenColorAndPaint: function() {
-            setCubeColor('green');
-            paint();
-        },
-
-        setCubeBlueColorAndPaint: function() {
-
-            setCubeColor('blue');
+            setPlaneRotation('z', z);
             paint();
         }
+
     }
 })();
