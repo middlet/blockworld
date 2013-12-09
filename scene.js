@@ -24,6 +24,7 @@ var scene = (function () {
         plane.material.side = THREE.DoubleSide;
         plane.rotation.x = -0.5;
         scene.add(plane);
+
         // axes
         axes = new THREE.AxisHelper(30);
         scene.add(axes);

@@ -4,6 +4,7 @@ function MainController($scope) {
 
     $scope.z = position[2];
     $scope.cz = scene.getCameraDistance();
+
 }
 
 function AxisZController($scope) {
