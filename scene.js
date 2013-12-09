@@ -3,8 +3,9 @@
 var scene = (function () {
 
 // set the scene size
-    var WIDTH = $('#container').width();
-    var HEIGHT = $('#container').height();
+    console.log(document.getElementById('view3d'));
+    var WIDTH = document.getElementById('view3d').offsetWidth;
+    var HEIGHT = document.getElementById('view3d').offsetHeight;
 
     var ASPECT = WIDTH / HEIGHT;
 
@@ -19,7 +20,7 @@ var scene = (function () {
 
 
         plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(100,100,10,10), 
+            new THREE.PlaneGeometry(100,100,10,10),
             new THREE.MeshNormalMaterial());
 
         plane.material.side = THREE.DoubleSide;
@@ -37,7 +38,7 @@ var scene = (function () {
         var NEAR = 0.1;
         var FAR = 10000;
 
-// create a WebGL camera
+// create a camera
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE,
             ASPECT,
             NEAR,
@@ -76,11 +77,10 @@ var scene = (function () {
         renderer.setSize(WIDTH, HEIGHT);
 
 // get the DOM element to attach to
-// - assume we've got jQuery to hand
-        var $container = $('#container');
+        var $container = document.getElementById('view3d');
 
 // attach the render-supplied DOM element
-        $container.append(renderer.domElement);
+        $container.appendChild(renderer.domElement);
     }
 
     function getPlaneRotation() {

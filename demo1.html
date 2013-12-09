@@ -5,41 +5,44 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 </head>
+
 <body ng-controller="ThreeJsCtrl">
 
+    <div class="container">
+        <div class="jumbotron">
+            <h1>blockworld</h1>
+            <p>experiments with angular.js and three.js</p>
+        </div>
+    </div>
 
-<div class="containter">
 
-    <div class="page-header">
-        <h1>blockworld</h1>
-        <p class="lead">experiments with angular.js and three.js</p>
-    </div> <!-- /page-header-->
+    <div class="container">
 
-    <div class="row">
-        <div class="col-md-4">
-            <ng-include src="'axis.html'" ng-controller="AxisXCtrl"/>
-        </div> <!-- /class-md-4 -->
-        <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4">
+                <ng-include src="'axis.html'" ng-controller="AxisXCtrl"/>
+            </div>
+            <div class="col-md-4">
             <ng-include src="'axis.html'" ng-controller="AxisYCtrl"/>
-        </div> <!-- /class-md-4 -->
-        <div class="col-md-4">
-            <ng-include src="'axis.html'" ng-controller="AxisZCtrl"/>
-        </div> <!-- /class-md-4 -->
-    </div> <!-- /row -->
+            </div>
+            <div class="col-md-4">
+                <ng-include src="'axis.html'" ng-controller="AxisZCtrl"/>
+            </div>
+        </div>
 
-    <div class="row">
-        <div id="container" style="height:200px; width: 100%; color:#aaaaaa;"></div>
-    </div> <!-- /row -->
+        <div class="row">
+            <div id="view3d" style="height:200px; width: 100%; color:#aaaaaa;"></div>
+        </div>
 
-</div> <!-- /container -->
+    </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r53/three.min.js"></script>
-<script src="scene.js"></script>
-<script src="controller.js"></script>
-<script type="application/javascript">
+    <!-- javascript at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r53/three.min.js"></script>
+    <script src="scene.js"></script>
+    <script src="controller.js"></script>
+    <script type="application/javascript">
     scene.init();
-</script>
+    </script>
 </body>
 </html>
