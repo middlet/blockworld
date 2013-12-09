@@ -1,152 +1,112 @@
-// originally from http://blog.frankel.ch/wp-content/resources/you-should-check-angularjs/scene.js
-
 var scene = (function () {
 
-// set the scene size
+    // set the scene size from the div
     var WIDTH = document.getElementById('view3d').offsetWidth;
     var HEIGHT = document.getElementById('view3d').offsetHeight;
 
     var ASPECT = WIDTH / HEIGHT;
 
-// create a WebGL renderer
-// and a scene
-    var renderer = new THREE.CanvasRenderer();
+    // create a renderer
+    // and a scene
+    var renderer = new THREE.WebGLRenderer();
     var scene = new THREE.Scene();
 
-    var plane;
+    var plane, axes;
 
     function createGeometry() {
-
-
-        plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(100,100,10,10),
-            new THREE.MeshNormalMaterial());
-
+        // create the plane
+        plane = new THREE.Mesh(new THREE.PlaneGeometry(152, 94),
+            new THREE.MeshBasicMaterial({
+                wireframe: true,
+                color: 'red'
+        }));
         plane.material.side = THREE.DoubleSide;
-
-        plane.rotation.x -= 1.0;
-
-// add the plane to the scene
+        plane.rotation.x = -0.5;
         scene.add(plane);
+        // add axes
+        axes = new THREE.AxisHelper(50);
+        scene.add(axes);
+
     }
 
     function createCamera() {
-
-// set some camera attributes
+        // set some camera attributes
         var VIEW_ANGLE = 45;
-        var NEAR = 0.1;
-        var FAR = 10000;
-
-// create a camera
-        //camera = new THREE.OrthographicCamera(-WIDTH/2, WIDTH/2, HEIGHT/2, -HEIGHT/2, 0.1, 10000);
-        camera = new THREE.PerspectiveCamera(VIEW_ANGLE,
-            ASPECT,
-            NEAR,
+        var NEAR = 1;
+        var FAR = 1000;
+        // create a camera
+        camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR,
             FAR);
-
-// the camera starts at 0,0,0 so pull it back
-        camera.position.z = 150;
-
-// and the camera
+        // the camera starts at 0,0,0 so pull it back
+        camera.position.z = 200;
+        // add the camera
         scene.add(camera);
     }
 
-    function createLight() {
-
-// create a point light
-        var pointLight = new THREE.PointLight(0xFFFFFF);
-
-// set its position
-        pointLight.position.x = 10;
-        pointLight.position.y = 50;
-        pointLight.position.z = 130;
-
-// add to the scene
-        scene.add(pointLight);
-    }
-
     function paint() {
-
-// draw!
         renderer.render(scene, camera);
     }
 
     function setup() {
-
-// start the renderer
         renderer.setSize(WIDTH, HEIGHT);
-
-// get the DOM element to attach to
-        var $container = document.getElementById('view3d');
-
-// attach the render-supplied DOM element
-        $container.appendChild(renderer.domElement);
+        var container = document.getElementById('view3d');
+        container.appendChild(renderer.domElement);
     }
 
     function getPlaneRotation() {
-
         return [plane.rotation.x, plane.rotation.y, plane.rotation.z];
     }
 
     function setPlaneRotation(axis, val) {
-
         switch (axis) {
-
             case 'x':
                 plane.rotation.x = val;
+                axes.rotation.x = val;
                 break;
             case 'y':
                 plane.rotation.y = val;
+                axes.rotation.y = val;
                 break;
             case 'z':
                 plane.rotation.z = val;
+                axes.rotation.z = val;
                 break;
         }
     }
 
     function setCameraPositionY(y) {
-
         camera.position.y = y;
     }
 
     function setCameraPositionZ(z) {
-
         camera.position.z = z;
     }
 
     return {
-
         init: function () {
-
-            createCamera();
-            createLight();
-            createGeometry();
             setup();
+            createCamera();
+            createGeometry();
             paint();
         },
 
         getPlaneRotation: function () {
-
             return getPlaneRotation();
         },
 
         setPlaneXRotationAndPaint: function (x) {
-
             setPlaneRotation('x', x);
             paint();
         },
 
         setPlaneYRotationAndPaint: function (y) {
-
             setPlaneRotation('y', y);
             paint();
         },
 
         setPlaneZRotationAndPaint: function (z) {
-
             setPlaneRotation('z', z);
             paint();
         }
-
     }
 })();
