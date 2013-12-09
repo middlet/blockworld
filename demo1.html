@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 </head>
 
-<body ng-controller="ThreeJsCtrl">
+<body ng-controller="MainController">
 
     <div class="container">
         <div class="jumbotron">
@@ -20,14 +20,17 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-4">
-                <ng-include src="'axis.html'" ng-controller="AxisXCtrl"/>
+            <div class="col-md-4 col-md-offset-2" ng-controller="AxisZController">
+                <label>rotate</label>
+                <a class="btn btn-primary" ng-mousedown="axis = axis + 0.1; updateRotation()">+</a>
+                <input type="number" ng-model="axis" ng-change="updateRotation()"/>
+                <a class="btn btn-primary" ng-mousedown="axis = axis - 0.1; updateRotation()">-</a>
             </div>
-            <div class="col-md-4">
-            <ng-include src="'axis.html'" ng-controller="AxisYCtrl"/>
-            </div>
-            <div class="col-md-4">
-                <ng-include src="'axis.html'" ng-controller="AxisZCtrl"/>
+            <div class="col-md-4" ng-controller="ZoomController">
+                <label>zoom</label>
+                <a class="btn btn-primary" ng-mousedown="zoom = zoom + 10; updateZoom()">+</a>
+                <input type="number" ng-model="zoom" ng-change="updateZoom()"/>
+                <a class="btn btn-primary" ng-mousedown="zoom = zoom - 10; updateZoom()">-</a>
             </div>
         </div>
 

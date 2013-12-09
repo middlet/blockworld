@@ -11,10 +11,11 @@ var scene = (function () {
     var renderer = new THREE.WebGLRenderer();
     var scene = new THREE.Scene();
 
-    var plane, axes;
+    var plane, axes, camera;
 
     function createGeometry() {
-        // create the plane
+        // create the objects to display
+        // plane
         plane = new THREE.Mesh(new THREE.PlaneGeometry(152, 94),
             new THREE.MeshBasicMaterial({
                 wireframe: true,
@@ -23,18 +24,16 @@ var scene = (function () {
         plane.material.side = THREE.DoubleSide;
         plane.rotation.x = -0.5;
         scene.add(plane);
-        // add axes
-        axes = new THREE.AxisHelper(50);
+        // axes
+        axes = new THREE.AxisHelper(30);
         scene.add(axes);
-
     }
 
     function createCamera() {
-        // set some camera attributes
+        // create the camera
         var VIEW_ANGLE = 45;
         var NEAR = 1;
         var FAR = 1000;
-        // create a camera
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR,
             FAR);
         // the camera starts at 0,0,0 so pull it back
@@ -44,38 +43,28 @@ var scene = (function () {
     }
 
     function paint() {
+        // draw the scene
         renderer.render(scene, camera);
     }
 
     function setup() {
+        // create the renderer and place on page
         renderer.setSize(WIDTH, HEIGHT);
         var container = document.getElementById('view3d');
         container.appendChild(renderer.domElement);
     }
 
-    function getPlaneRotation() {
+    function getPosition() {
         return [plane.rotation.x, plane.rotation.y, plane.rotation.z];
     }
 
-    function setPlaneRotation(axis, val) {
-        switch (axis) {
-            case 'x':
-                plane.rotation.x = val;
-                axes.rotation.x = val;
-                break;
-            case 'y':
-                plane.rotation.y = val;
-                axes.rotation.y = val;
-                break;
-            case 'z':
-                plane.rotation.z = val;
-                axes.rotation.z = val;
-                break;
-        }
+    function getCameraDistance() {
+        return camera.position.z;
     }
 
-    function setCameraPositionY(y) {
-        camera.position.y = y;
+    function rotatePlane(val) {
+        plane.rotation.z = val;
+        axes.rotation.z = val;
     }
 
     function setCameraPositionZ(z) {
@@ -90,22 +79,21 @@ var scene = (function () {
             paint();
         },
 
-        getPlaneRotation: function () {
-            return getPlaneRotation();
+        getPosition: function () {
+            return getPosition();
         },
 
-        setPlaneXRotationAndPaint: function (x) {
-            setPlaneRotation('x', x);
+        getCameraDistance: function () {
+            return getCameraDistance();
+        },
+
+        rotatePlane: function (z) {
+            rotatePlane(z);
             paint();
         },
 
-        setPlaneYRotationAndPaint: function (y) {
-            setPlaneRotation('y', y);
-            paint();
-        },
-
-        setPlaneZRotationAndPaint: function (z) {
-            setPlaneRotation('z', z);
+        setCameraPosition: function(z) {
+            setCameraPositionZ(z);
             paint();
         }
     }
