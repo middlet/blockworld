@@ -3,7 +3,6 @@
 var scene = (function () {
 
 // set the scene size
-    console.log(document.getElementById('view3d'));
     var WIDTH = document.getElementById('view3d').offsetWidth;
     var HEIGHT = document.getElementById('view3d').offsetHeight;
 
@@ -39,13 +38,14 @@ var scene = (function () {
         var FAR = 10000;
 
 // create a camera
+        //camera = new THREE.OrthographicCamera(-WIDTH/2, WIDTH/2, HEIGHT/2, -HEIGHT/2, 0.1, 10000);
         camera = new THREE.PerspectiveCamera(VIEW_ANGLE,
             ASPECT,
             NEAR,
             FAR);
 
 // the camera starts at 0,0,0 so pull it back
-        camera.position.z = 250;
+        camera.position.z = 150;
 
 // and the camera
         scene.add(camera);
