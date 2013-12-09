@@ -24,7 +24,7 @@ function ZoomController($scope) {
     $scope.zoom = $scope.cz;
 
     $scope.updateZoom = function () {
-        console.log(this.zoom);
+
         this.cz = this.zoom;
 
         scene.setCameraPosition(this.zoom);

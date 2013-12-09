@@ -11,23 +11,32 @@ var scene = (function () {
     var renderer = new THREE.WebGLRenderer();
     var scene = new THREE.Scene();
 
-    var plane, axes, camera;
+    var plane, camera;
+
+    var BOUNDS = [31.7900417, 35.2054417, 31.7810028, 35.2206583];
 
     function createGeometry() {
         // create the objects to display
         // plane
-        plane = new THREE.Mesh(new THREE.PlaneGeometry(152, 94),
-            new THREE.MeshBasicMaterial({
-                wireframe: true,
-                color: 'red'
-        }));
-        plane.material.side = THREE.DoubleSide;
-        plane.rotation.x = -0.5;
-        scene.add(plane);
+        var w = Math.abs(BOUNDS[2]-BOUNDS[0]), h = Math.abs(BOUNDS[1]-BOUNDS[3]);
+        var cx = (BOUNDS[0]+BOUNDS[2])/2.0, cy = (BOUNDS[1]+BOUNDS[3])/2.0;
+        var scale = (w>h) ? 150/w : 150/h;
 
-        // axes
-        axes = new THREE.AxisHelper(30);
-        scene.add(axes);
+
+        var pgeo = new THREE.Geometry();
+        pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[0]-cx), scale*(BOUNDS[1]-cy), 0));
+        pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[2]-cx), scale*(BOUNDS[1]-cy), 0));
+        pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[2]-cx), scale*(BOUNDS[3]-cy), 0));
+        pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[0]-cx), scale*(BOUNDS[3]-cy), 0));
+        pgeo.faces.push(new THREE.Face4(0, 1, 2, 3));
+        console.log(pgeo);
+        var pmat = new THREE.MeshBasicMaterial({
+            color: 0xaa0000,
+            wireframe: true
+        });
+        plane = new THREE.Mesh(pgeo, pmat);
+        plane.rotation.x = -1.0;
+        scene.add(plane);
     }
 
     function createCamera() {
@@ -56,7 +65,7 @@ var scene = (function () {
     }
 
     function getPosition() {
-        return [plane.rotation.x, plane.rotation.y, plane.rotation.z];
+        return [plane.position.x, plane.position.y, plane.position.z];
     }
 
     function getCameraDistance() {
@@ -65,7 +74,6 @@ var scene = (function () {
 
     function rotatePlane(val) {
         plane.rotation.z = val;
-        axes.rotation.z = val;
     }
 
     function setCameraPositionZ(z) {
