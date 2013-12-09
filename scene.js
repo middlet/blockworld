@@ -29,7 +29,6 @@ var scene = (function () {
         pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[2]-cx), scale*(BOUNDS[3]-cy), 0));
         pgeo.vertices.push(new THREE.Vector3(scale*(BOUNDS[0]-cx), scale*(BOUNDS[3]-cy), 0));
         pgeo.faces.push(new THREE.Face4(0, 1, 2, 3));
-        console.log(pgeo);
         var pmat = new THREE.MeshBasicMaterial({
             color: 0xaa0000,
             wireframe: true
@@ -37,6 +36,7 @@ var scene = (function () {
         plane = new THREE.Mesh(pgeo, pmat);
         plane.rotation.x = -1.0;
         scene.add(plane);
+
     }
 
     function createCamera() {
