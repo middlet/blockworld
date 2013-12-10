@@ -1,3 +1,4 @@
+
 function MainController($scope) {
     $scope.bounds = [20, 30, 60, 60];
     $scope.regions = [[[42,42], [45,42], [45,46], [42,46]],
