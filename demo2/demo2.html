@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="threedee">
 <head>
     <title>blockworld</title>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 </head>
 
-<body ng-controller="MainController">
+<body>
 
     <div class="container">
         <div class="jumbotron">
@@ -17,10 +17,10 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" ng-controller="MainController">
 
         <div class="row">
-
+            <div buildingview></div>
         </div>
 
     </div>
